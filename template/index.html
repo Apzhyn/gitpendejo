@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<input id="u">
+<input id="t">
+<button onclick="s()">send</button>
+<div id="d"></div>
+
+<script>
+async function s(){
+ await fetch("/send",{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify({user:u.value,text:t.value})
+ })
+}
+
+async function l(){
+ let r=await fetch("/msgs")
+ let d=await r.json()
+ document.getElementById("d").innerHTML=d.map(x=>x.user+": "+x.text).join("<br>")
+}
+setInterval(l,1000)
+</script>
+</body>
+</html>
