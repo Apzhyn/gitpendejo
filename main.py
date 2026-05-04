@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import subprocess
 import os
 
@@ -14,7 +14,7 @@ if not os.path.exists(path):
 
 @app.route("/")
 def home():
-    return open(__file__).read()
+    return render_template("index.html")
 
 @app.route("/send", methods=["POST"])
 def send():
